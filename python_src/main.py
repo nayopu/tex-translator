@@ -32,6 +32,10 @@ def make_math_tag_dict(text):
         d[tag] = mp
     return d
 
+def load_math_tag_dict(jsonfile):
+    with open(jsonfile) as f:
+        make_math_tag_dict = json.load(f)
+    return make_math_tag_dict
 
 def math_to_tag(text, math_tag_dict):
     for tag, mp in math_tag_dict.items():
@@ -52,27 +56,35 @@ def save_math_tag_dict(filename, math_tag_dict):
         f.write(j)
 
 
+def to_tag(text, jsonfile):
+    math_tag_dict = make_math_tag_dict(text)
+    save_math_tag_dict(jsonfile, math_tag_dict)
+    math_to_tag(text, math_tag_dict)
+
+def to_math(text, jsonfile):
+    math_tag_dict = load_math_tag_dict(jsonfile)
+    tag_to_math(text, math_tag_dict)
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('This is hogehoge')
+    parser.add_argument('command', help='2tag(t) or 2math(m)', choices=['tag', 't', 'math', 'm', ])
     parser.add_argument('filename', help='filename of tex')
+    parser.add_argument('--json', help='filename of math_tag json', default='math_tag.json')
     args = parser.parse_args()
 
     filename = args.filename
     #print('filename') # debug
     #print(filename) # debug
+    jsonfile = args.json
+    print('jsonfile') # debug
+    print(jsonfile) # debug
 
     with open(filename) as f:
         text = f.read()
-
-    math_tag_dict = make_math_tag_dict(text)
-    save_math_tag_dict('math_tag.json', math_tag_dict)
-
-    math_to_tag(text, math_tag_dict)
-    tag_to_math(text, math_tag_dict)
-
-
-
-
-
+    if args.command in ['tag', 't']:
+        to_tag(text, jsonfile)
+    elif args.command in ['math', 'm']:
+        to_math(text, jsonfile)
 
     print('\33[32m' + 'end' + '\033[0m')
+
