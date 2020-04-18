@@ -22,7 +22,14 @@ from pprint import pformat as pf
 import re
 import json
 
-MATH_PATTERN = '\\\\\(.*\\\\\)'
+# \\\\ で \ を表す
+# \( で ( を表す
+# \) で ) を表す
+# . で任意の文字を表す
+# * で直前の文字の0回以上の連続を表す
+# .* で任意の文字列を表す
+MATH_PATTERN = '\\\\\(.*\\\\\)' # 後ろに \) があれば、できるだけ長くマッチしようとする
+MATH_PATTERN = '\\\\\(.*?\\\\\)' # 最初に見つけた \) にマッチする
 
 def make_math_tag_dict(text):
     d = {}
