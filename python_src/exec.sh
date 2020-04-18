@@ -1,1 +1,1 @@
-python main.py 2>&1 | tee ^a
+python main.py ../samples/first_text.tex 2>&1 | tee ^a
