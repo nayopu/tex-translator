@@ -1,0 +1,101 @@
+% \documentclass[xelatex,ja=standard,jafont=noto]{bxjsarticle}
+
+%%%% ijcai20-multiauthor.tex
+
+\typeout{Test}
+
+% These are the instructions for authors for IJCAI-20.
+
+\documentclass{article}
+
+\usepackage[whole]{bxcjkjatype}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+% The file ijcai20.sty is NOT the same than previous years'
+\usepackage{ijcai20}
+% Use the postscript times font!
+\usepackage{times}
+\renewcommand*\ttdefault{txtt}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nccmath} 
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{todonotes}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\urlstyle{same}
+
+% the following package is optional:
+%\usepackage{latexsym} 
+
+% Following comment is from ijcai97-submit.tex:
+% The preparation of these files was supported by Schlumberger Palo Alto
+% Research, AT\&T Bell Laboratories, and Morgan Kaufmann Publishers.
+% Shirley Jowell, of Morgan Kaufmann Publishers, and Peter F.
+% Patel-Schneider, of AT\&T Bell Laboratories collaborated on their
+% preparation.
+
+% These instructions can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+% Neither Shirley Jowell nor Peter F. Patel-Schneider can be listed as
+% contacts for providing assistance without their prior permission.
+
+% To use for other conferences, change references to files and the
+% conference appropriate and use other authors, contacts, publishers, and
+% organizations.
+% Also change the deadline and address for returning papers and the length and
+% page charge instructions.
+% Put where the files are available in the appropriate places.
+
+\title{Test}
+
+\author{}
+
+\begin{document}
+
+\listoftodos
+
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+\section{Background}
+    \label{prior}
+    \subsection{Supervised Learning}
+        \subsubsection{Dataset and Model}
+            We denote dataset as \(Y:= \{y_n = \left(  x_n , Z^n  \right)\} ^{N}_{n=1} \)
+            where \(x \in \mathbb{R}^{d_x}\), \(z \in \mathbb{R}\)  for regression and \(z \in  \{ 0,1 \}\) for binary classification.
+            学習の目的は\( y \approx F \left( x, \psi \right) \)を満たすparameter \(\psi \in \mathbb{R}^{p}\)を見つけることである。
+            \(\psi\)はloss \(L \left( y, \psi \right) := L \left( F(x_n \psi) ,Z^{n} \right)\)の最小化問題の解であたえられる。
+            \begin{equation}
+                \psi = \mathop{\rm argmin}\limits_{ \psi }\frac{1}{N} \sum L \left( F(x_n;\psi) ,Z^{n} \right)
+            \end{equation}
+            ここで\(L\)は一般的な回帰問題ではl2 norm, 分類問題ではクロスエントロピーである。
+            
+        % SGD (Stochastic Gradient Descent)
+          \subsubsection{SGD}
+            ミニバッチを用いたSGDは，勾配を\( g \left( y, \psi ^{t} \right) := \nabla _{ \phi }L \left( y, \psi ^{t} \right) \)，学習に使用されるサンプルのindexの集合を\(S_t \subset  \left\{ 1,  \ldots , N \right\}\)と表記すると，
+            パラメータをステップ\(t\)においてに次のように更新する。    
+            \begin{equation}
+                \psi ^{t+1} 
+                = \psi ^{t} 
+                -\frac{\eta^{t}}{ \vert S_{t} \vert }  \sum _{i \in S_{t}}g_\psi\left( y_{i},\psi^{t}\right)
+            \end{equation}
+
+
+\bibliographystyle{named}
+\bibliography{main}
+
+\end{document}
