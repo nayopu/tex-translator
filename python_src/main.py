@@ -47,14 +47,16 @@ def load_math_tag_dict(jsonfile):
 def math_to_tag(text, math_tag_dict):
     for tag, mp in math_tag_dict.items():
         text = text.replace(mp, tag)
-    print('text') # debug
-    print(text) # debug
+    # print('text') # debug
+    # print(text) # debug
+    return text
 
 def tag_to_math(text, math_tag_dict):
     for tag, mp in math_tag_dict.items():
         text = text.replace(tag, mp)
-    print('text') # debug
-    print(text) # debug
+    # print('text') # debug
+    # print(text) # debug
+    return text
 
 
 def save_math_tag_dict(filename, math_tag_dict):
@@ -62,15 +64,14 @@ def save_math_tag_dict(filename, math_tag_dict):
     with open(filename, 'w') as f:
         f.write(j)
 
-
 def to_tag(text, jsonfile):
     math_tag_dict = make_math_tag_dict(text)
     save_math_tag_dict(jsonfile, math_tag_dict)
-    math_to_tag(text, math_tag_dict)
+    print(math_to_tag(text, math_tag_dict))
 
 def to_math(text, jsonfile):
     math_tag_dict = load_math_tag_dict(jsonfile)
-    tag_to_math(text, math_tag_dict)
+    print(tag_to_math(text, math_tag_dict))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('This is hogehoge')
