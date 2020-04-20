@@ -12,11 +12,14 @@ import json
 # .* で任意の文字列を表す
 # MATH_PATTERN = '\\\\\(.*\\\\\)' # 後ろに \) があれば、できるだけ長くマッチしようとする
 MATH_PATTERN = '\\\\\(.*?\\\\\)' # 最初に見つけた \) にマッチする
+PACKAGE_PATTERN = '\\\\.*?\{.*?\}' # 最初に見つけた \) にマッチする
 
 def make_math_tag_dict(text):
     d = {}
     math_pattern_list = re.findall(MATH_PATTERN, text)
-    for i, mp in enumerate(math_pattern_list):
+    pack_pattern_list = re.findall(PACKAGE_PATTERN, text)
+    pattern_list = math_pattern_list + pack_pattern_list
+    for i, mp in enumerate(pattern_list):
         tag = 'HOGE{}'.format(i)
         d[tag] = mp
     return d
