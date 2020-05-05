@@ -20,14 +20,27 @@ def make_math_tag_dict(text):
     pack_pattern_list = re.findall(PACKAGE_PATTERN, text)
     pattern_list = math_pattern_list + pack_pattern_list
     for i, mp in enumerate(pattern_list):
-        tag = 'HOGE{}'.format(i)
+#         print(i)
+#         print(mp)
+        if i < 10:
+            tag = 'HOGE{}'.format(i)
+        elif i < 20:
+            tag = 'FUGA{}'.format(i)
+        elif i < 30:
+            tag = 'PIYO{}'.format(i)
+        elif i < 40:
+            tag = 'MOGE{}'.format(i)
+        elif i < 50:
+            tag = 'MUGA{}'.format(i)
+        else:
+            assert False
         d[tag] = mp
     return d
 
 def load_math_tag_dict(jsonfile):
     with open(jsonfile) as f:
-        make_math_tag_dict = json.load(f)
-    return make_math_tag_dict
+        math_tag_dict = json.load(f)
+    return math_tag_dict
 
 def math_to_tag(text, math_tag_dict):
     for tag, mp in math_tag_dict.items():

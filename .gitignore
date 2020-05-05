@@ -1,0 +1,8 @@
+python_src/.bash_history
+python_src/.ipynb_checkpoints/
+python_src/.ipython/
+python_src/.jupyter/
+python_src/.local/
+python_src/__pycache__/
+python_src/deeplator/
+python_src/tmp.json
